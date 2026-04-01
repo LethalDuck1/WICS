@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     const current = formData.get("current");
 
     if (!(previous instanceof File) || !(current instanceof File)) {
-      return new NextResponse("Both files required", { status: 400 });
+      return new NextResponse("Both files are required.", { status: 400 });
     }
 
     const [previousBuffer, currentBuffer] = await Promise.all([
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       compareInventories(previousTitles, currentTitles)
     );
-  } catch (err) {
+  } catch {
     return new NextResponse("Server error", { status: 500 });
   }
 }
