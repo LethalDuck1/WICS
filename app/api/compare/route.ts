@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
 
     if (previousTitles.length === 0 && currentTitles.length === 0) {
       return new NextResponse(
-        "No usable show titles were detected. These PDFs may be image based.",
+        "No usable show titles were detected. These PDFs may be image based or use a layout this version cannot parse yet.",
         { status: 422 }
       );
     }
