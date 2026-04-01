@@ -47,13 +47,14 @@ export async function POST(request: NextRequest) {
 
     if (previousTitles.length === 0 && currentTitles.length === 0) {
       return new NextResponse(
-        "No usable show titles were detected. These PDFs may be image based or use a layout this version cannot parse yet.",
+        "No usable show titles were detected. These PDFs may be image based.",
         { status: 422 }
       );
     }
 
-    const comparison = compareInventories(previousTitles, currentTitles);
-    return NextResponse.json(comparison);
+    return NextResponse.json(
+      compareInventories(previousTitles, currentTitles)
+    );
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unexpected compare error.";
